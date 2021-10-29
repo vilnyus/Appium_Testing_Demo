@@ -6,12 +6,14 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Main {
 
+    @Test
     public static void main(String[] args) throws MalformedURLException {
 
         DesiredCapabilities dc = new DesiredCapabilities();
@@ -19,7 +21,7 @@ public class Main {
         dc.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
         dc.setCapability("platformName", "android");
         dc.setCapability("appPackage", "com.google.android.calculator");
-        dc.setCapability("appActivity", ".Calculator");
+        dc.setCapability("appActivity", "com.android.calculator2.Calculator");
 
         AndroidDriver<AndroidElement> ad = new AndroidDriver<AndroidElement> (new URL("http://127.0.0.1:4723/wd/hub"), dc);
 
@@ -36,7 +38,7 @@ public class Main {
         MobileElement el6 = (MobileElement) ad.findElementByAccessibilityId("equals");
         el6.click();
 
-        Assert.assertEquals(ad.findElementById("com.google.android.calculator:id/result_final").getText(), 61);
+        Assert.assertEquals(ad.findElementById("com.google.android.calculator:id/result_final").getText(), "61");
 
     }
 }
